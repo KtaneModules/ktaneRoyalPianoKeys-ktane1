@@ -229,26 +229,34 @@ public class RoyalPianoKeys : MonoBehaviour
             yield return null;
             if (parameters.Length == 1)
             {
-                yield return "sendtochaterror Please specify the position of the food you wish to press!";
+                yield return "sendtochaterror Please specify a position for a food you wish to press!";
             }
-            else if (parameters.Length == 2)
+            else 
             {
-                int temp = -1;
-                if (!int.TryParse(parameters[1], out temp))
+                List<KMSelectable> presses = new List<KMSelectable>();
+                for (int i = 1; i < parameters.Length; i++)
                 {
-                    yield return "sendtochaterror!f The specified position '" + parameters[1] + "' is invalid!";
-                    yield break;
+                    switch (parameters[i])
+                    {
+                        case "1":
+                            presses.Add(foods[0]);
+                            break;
+                        case "2":
+                            presses.Add(foods[1]);
+                            break;
+                        case "3":
+                            presses.Add(foods[2]);
+                            break;
+                        default:
+                            yield return "sendtochaterror!f The specified food position '" + parameters[1] + "' is invalid!";
+                            yield break;
+                    }
                 }
-                if (temp < 1 || temp > 3)
+                foreach (KMSelectable btn in presses)
                 {
-                    yield return "sendtochaterror The specified position '" + parameters[1] + "' is out of range 1-3!";
-                    yield break;
+                    btn.OnInteract();
+                    yield return new WaitForSeconds(0.1f);
                 }
-                foods[temp - 1].OnInteract();
-            }
-            else if (parameters.Length > 2)
-            {
-                yield return "sendtochaterror Too many parameters!";
             }
         }
         if (Regex.IsMatch(parameters[0], @"^\s*press\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))

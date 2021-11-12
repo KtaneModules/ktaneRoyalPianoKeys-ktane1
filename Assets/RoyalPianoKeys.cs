@@ -104,8 +104,6 @@ public class RoyalPianoKeys : MonoBehaviour
             else
             {
                 audio.PlaySoundAtTransform(pianoSounds[k].name, transform);
-                module.HandleStrike();
-                Debug.LogFormat("[Royal Piano Keys #{0}] This piano is only for entertainment purposes for the princess, it is not for you to play whenever you feel like. Strike.", moduleId);
             }
         }
     }

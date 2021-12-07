@@ -28,7 +28,7 @@ public class RoyalPianoKeys : MonoBehaviour
     private int moduleId;
     private int chosenMelody;
     private int note = 0;
-    private bool moduleActivated, moduleSolved; 
+    private bool moduleActivated, strikeMode, moduleSolved; 
 
     void Awake()
     {
@@ -92,6 +92,8 @@ public class RoyalPianoKeys : MonoBehaviour
                         module.HandlePass();
                         Debug.LogFormat("[Royal Piano Keys #{0}] The princess is satisfied. Module solved nanora.", moduleId);
                         moduleSolved = true;
+                        StartCoroutine(cooldown());
+
                     }
                 }
                 else
@@ -101,6 +103,12 @@ public class RoyalPianoKeys : MonoBehaviour
                     Debug.LogFormat("[Royal Piano Keys #{0}] Strike! A wrong key was pressed.", moduleId);
                 }
             }
+            else if (strikeMode)
+            {
+                module.HandleStrike();
+                Debug.LogFormat("[Royal Piano Keys #{0}] The princess is already satisfied, yet you still continued playing. Strike.", moduleId);
+                audio.PlaySoundAtTransform(pianoSounds[k].name, transform);
+            }
             else
             {
                 audio.PlaySoundAtTransform(pianoSounds[k].name, transform);
@@ -108,6 +116,12 @@ public class RoyalPianoKeys : MonoBehaviour
         }
     }
 
+    IEnumerator cooldown()
+    {
+        strikeMode = true;
+        yield return new WaitForSeconds(3f);
+        strikeMode = false;
+    }
     void foodChanger(int k)
     {
         if (moduleActivated == false)

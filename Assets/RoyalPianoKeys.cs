@@ -231,7 +231,7 @@ public class RoyalPianoKeys : MonoBehaviour
 
     //twitch plays
     #pragma warning disable 414
-    private readonly string TwitchHelpMessage = @"!{0} food <pos> [Presses the food in the specified position] | !{0} press <key> [Presses the specified key] | Valid food positions are 1-3 from left to right | Key presses are chainable, for ex: !{0} press Ab Db E";
+    private readonly string TwitchHelpMessage = @"!{0} food <pos> [Presses the food in the specified position] | !{0} press <key> [Presses the specified key] | Valid food positions are 1-3 from left to right | Food and key presses are chainable, for ex: !{0} food 1 2 3 & !{0} press Ab Db E ";
     #pragma warning restore 414
     IEnumerator ProcessTwitchCommand(string command)
     {

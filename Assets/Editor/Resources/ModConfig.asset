@@ -22,6 +22,6 @@ MonoBehaviour:
     Mod ID: royalPianoKeys
 
     Manual Link: https://ktane.timwi.de/HTML/Royal%20Piano%20Keys.html'
-  version: 1.4.2
+  version: 1.5
   outputFolder: build
   previewImage: {fileID: 2800000, guid: dffdfad74f808c5449a1fe10fafc741e, type: 3}

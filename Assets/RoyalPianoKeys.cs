@@ -74,7 +74,7 @@ public class RoyalPianoKeys : MonoBehaviour
         }
         if (input == false)
         {
-            audio.PlaySoundAtTransform(pianoSounds[k].name, transform);
+            audio.PlaySoundAtTransform(pianoSounds[k + 12].name, transform);
             module.HandleStrike();
             Debug.LogFormat("[Royal Piano Keys #{0}] Strike! The princess is not satisfied with the food given yet.", moduleId);
         }
@@ -98,7 +98,7 @@ public class RoyalPianoKeys : MonoBehaviour
                 }
                 else
                 {
-                    audio.PlaySoundAtTransform(pianoSounds[k].name, transform);
+                    audio.PlaySoundAtTransform(pianoSounds[k + 12].name, transform);
                     module.HandleStrike();
                     Debug.LogFormat("[Royal Piano Keys #{0}] Strike! A wrong key was pressed.", moduleId);
                 }
@@ -107,11 +107,11 @@ public class RoyalPianoKeys : MonoBehaviour
             {
                 module.HandleStrike();
                 Debug.LogFormat("[Royal Piano Keys #{0}] The princess is already satisfied, yet you still continued playing. Strike.", moduleId);
-                audio.PlaySoundAtTransform(pianoSounds[k].name, transform);
+                audio.PlaySoundAtTransform(pianoSounds[k + 12].name, transform);
             }
             else
             {
-                audio.PlaySoundAtTransform(pianoSounds[k].name, transform);
+                audio.PlaySoundAtTransform(pianoSounds[k + 12].name, transform);
             }
         }
     }
